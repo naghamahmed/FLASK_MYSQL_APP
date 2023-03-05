@@ -1,0 +1,26 @@
+version: "3"
+services:
+  app:
+    build: ./app/
+    links:
+      - db
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/app
+
+  db:
+    build: ./db/
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: BucketList
+      MYSQL_DATABASE_USER: root
+      MYSQL_ROOT_PASSWORD: root
+
+    volumes:
+      - mysql-flask:/var/lib/mysql
+      - mysql-config:/etc/mysql
+volumes:
+  mysql-flask:
+  mysql-config:
