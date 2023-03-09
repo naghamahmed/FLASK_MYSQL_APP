@@ -1,26 +1,14 @@
-version: "3"
 services:
   app:
-    build: ./app/
-    links:
+    build: ./FlaskApp
+    depends_on:
       - db
     ports:
-      - "5000:5000"
-    volumes:
-      - ./:/app
+      - "5002:5002"
 
   db:
-    build: ./db/
+    build: ./db
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: BucketList
-      MYSQL_DATABASE_USER: root
       MYSQL_ROOT_PASSWORD: root
-
-    volumes:
-      - mysql-flask:/var/lib/mysql
-      - mysql-config:/etc/mysql
-volumes:
-  mysql-flask:
-  mysql-config:

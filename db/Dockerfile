@@ -1,3 +1,2 @@
-FROM mysql:8.0.2
-COPY . .
-copy ./db /docker-entrypoint-initdb.d/
+FROM mysql:latest
+ADD BucketList.sql /docker-entrypoint-initdb.d

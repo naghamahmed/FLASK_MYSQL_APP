@@ -1,25 +1,20 @@
-from flask import Flask, render_template, json, request, redirect, session
-from flask_mysqldb import MySQL
-from werkzeug.security import generate_password_hash, check_password_hash
-#import mysql.connector
+from flask import Flask, render_template, json, request, redirect, session, jsonify
+from flaskext.mysql import MySQL
 import pymysql
-import os
+import mysql.connector
+
+# from werkzeug import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
+
 mysql = MySQL()
 
 # MySQL configurations
-# MYSQL env
-app.config['MYSQL_DATABASE_USER'] = os.environ["MYSQL_DATABASE_USER"]
-app.config['MYSQL_DATABASE_PASSWORD'] = os.environ["MYSQL_DATABASE_PASSWORD"]
-app.config['MYSQL_DATABASE'] = os.environ["MYSQL_DATABASE"]
-app.config['MYSQL_DATABASE_HOST'] = os.environ["MYSQL_DATABASE_HOST"]
-
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
-app.config['MYSQL_DATABASE'] = 'BucketList'
+app.config['MYSQL_DATABASE_DB'] = 'BucketList'
 app.config['MYSQL_DATABASE_HOST'] = 'db'
-#app.config['PORT'] = '3306'
+
 mysql.init_app(app)
 
 # set a secret key for the session
@@ -28,6 +23,7 @@ app.secret_key = 'why would I tell you my secret key?'
 @app.route("/")
 def main():
     return render_template('index.html')
+
 
 @app.route('/showSignUp')
 def showSignUp():
@@ -159,4 +155,6 @@ def getWish():
         return render_template('error.html', error = str(e))
 
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0')
+    app.run(host="0.0.0.0",port=5002,debug=True)
+
+
