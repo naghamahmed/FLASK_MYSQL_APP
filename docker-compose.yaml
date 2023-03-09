@@ -6,6 +6,12 @@ services:
       - db
     ports:
       - "5002:5002"
+    environment:
+      MYSQL_DATABASE_USER: root
+      MYSQL_DATABASE_PASSWORD: root
+      MYSQL_DATABASE_DB: BucketList
+      MYSQL_DATABASE_HOST: db
+
 
   db:
     build: ./db
