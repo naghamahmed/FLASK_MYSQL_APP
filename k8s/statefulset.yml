@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: 540546280025.dkr.ecr.eu-central-1.amazonaws.com/mysqldb:latest
+        image:
         envFrom:
           #- secretRef:
             #name: mysql-secret
