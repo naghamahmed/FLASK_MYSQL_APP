@@ -1,0 +1,5 @@
+REGION =  "eu-central-1"
+AZ     =  "eu-central-1a"
+SUBNET_1= "subnet-00719b61ea2023899"
+SUBNET_2= "subnet-059b487064b1952cf"
+AMI     = "ami-0d1ddd83282187d18"
