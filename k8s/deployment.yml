@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: 540546280025.dkr.ecr.eu-central-1.amazonaws.com/flask-app:latest
+        image: 
         envFrom:
           - configMapRef:
              name: mysql-configmap
