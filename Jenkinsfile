@@ -12,12 +12,6 @@ pipeline {
     }
     
     stages{
-        stage('Git check') {
-            steps {
-                git branch: 'main', credentialsId: 'github_token', url: 'https://github.com/naghamahmed/FLASK_MYSQL_APP.git'
-            }
-        }
-    
         stage('Build flask image'){
             steps {
                 sh "docker build -t ${FLASK_IMAGE}:latest FlaskApp/."
