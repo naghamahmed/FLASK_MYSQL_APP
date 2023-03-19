@@ -54,7 +54,7 @@ pipeline {
         stage('Deploy k8s mainfest') {
             steps{
                 sh'kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.6.4/deploy/static/provider/aws/deploy.yaml'
-                sh'kubectl apply -f k8s/pv.yml -f k8s/pvc.yml -f k8s/db-sv.yml -f k8s/db-configmap.yml -f k8s/statefulset.yml'
+                sh'kubectl apply -f k8s/pv.yml -f k8s/db-sv.yml -f k8s/db-configmap.yml -f k8s/statefulset.yml'
                 sh'kubectl apply -f k8s/app-configmap.yml -f k8s/app-sv.yml -f k8s/deployment.yml'
                 sh'kubectl apply -f k8s/nginx-ingress.yml'
                 
