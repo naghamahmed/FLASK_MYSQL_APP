@@ -57,7 +57,7 @@ pipeline {
                 sh'kubectl apply -f k8s/pv.yml -f k8s/db-sv.yml -f k8s/db-configmap.yml -f k8s/statefulset.yml'
                 sh'kubectl apply -f k8s/app-configmap.yml -f k8s/app-sv.yml -f k8s/deployment.yml'
                 sh'kubectl apply -f k8s/nginx-ingress.yml'
-                sh"kubectl describe service ingress-nginx-controller -n ingress-nginx | grep "LoadBalancer Ingress:""
+                sh"kubectl describe service ingress-nginx-controller -n ingress-nginx | grep 'LoadBalancer Ingress:' "
                 
             }
         }
