@@ -33,11 +33,13 @@ spec:
 #       - name: mysql-data
 #         persistentVolumeClaim:
 #           claimName: app-pvc
-  volumeClaimTemplates:                     // this will be used to create PVC
-   - metadata:
-       name: mysql-data 
-     spec:
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-data
+    spec:
       accessModes: [ "ReadWriteMany" ]
+      storageClassName: ""
       resources:
         requests:
           storage: 1Gi
+
