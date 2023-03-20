@@ -15,9 +15,12 @@ Deployed the App through jenkins pipeline by
 - EC2 with SG and IAM role to allow jenkins deploying on ECR and EKS
 
 # Kubernetes Mainfest
+
 - Deployment for flask-app image with readiness and liveness
+- ConfigMap for flask-app variables (deployment)
 - ClusterIP service selects the deployment's pod
 - Statefulset for mysql image with (pv and pvs)
+- ConfigMap for mysql variables (statefulset)
 - ClusterIP service selects the statefulset's pod
 - Ingress using nginx-controller
 
