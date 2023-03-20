@@ -14,6 +14,13 @@ Deployed the App through jenkins pipeline by
 - 2 private REPO ECR
 - EC2 with SG and IAM role to allow jenkins deploying on ECR and EKS
 
+# Kubernetes Mainfest
+- Deployment for flask-app image with readiness and liveness
+- ClusterIP service selects the deployment's pod
+- Statefulset for mysql image with (pv and pvs)
+- ClusterIP service selects the statefulset's pod
+- Ingress using nginx-controller
+
 # Convert the app into dockerized application
 
 The app is copied from the tutorial http://code.tutsplus.com/tutorials/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-22972
@@ -77,6 +84,7 @@ jenkinsfile stages
 - Login to ECR
 - Push images to ECR
 - Get kubeconfig
+- Installing nginx-controller for AWS
 - Apply K8S Mainfest
 - Output the App URL in the console output
 
