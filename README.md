@@ -36,8 +36,13 @@ localhost:5002
 ```
 ![Screenshot from 2023-03-20 17-02-43](https://user-images.githubusercontent.com/110065223/226381379-887c4895-f1b0-400c-8c76-dcab1ec4ed95.png)
 
+# Configuring the EC2 with Ansible
 
-# Terraform and Ansible (IAC)
+- Configure jenkins
+- Installing kubectl
+- Installing AWSCli
+
+# Applying Terraform and Ansible (IAC)
 
 - using Bash Script to apply Terraform and Ansible 
 
