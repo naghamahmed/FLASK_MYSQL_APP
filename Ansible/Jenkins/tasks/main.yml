@@ -15,6 +15,7 @@
       - software-properties-common
       - unzip
       - python3
+      - jq
 
 #Jenkins Installation
 - name: Add Jenkins repository

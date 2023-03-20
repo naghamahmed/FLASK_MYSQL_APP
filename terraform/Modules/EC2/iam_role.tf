@@ -37,6 +37,6 @@ resource "aws_iam_role_policy_attachment" "amazon_ec2_container_registry_read_on
 }
 
 resource "aws_iam_instance_profile" "ec2_profile_jenkins" {
-  name = "ec2_profile_jenkins"
+  name = "ec2_profile_jenkins_role"
   role = aws_iam_role.ec2_role.name
 }
