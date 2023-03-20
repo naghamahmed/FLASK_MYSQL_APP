@@ -28,12 +28,13 @@ Deployed the App through jenkins pipeline by
 
 The app is copied from the tutorial http://code.tutsplus.com/tutorials/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-22972
 
-build Flask image and mysql image with database table 
+Building Flask image and mysql image with database table
+
 run 
 ```
 docker-compose up --build
 ```
-to test the app local but the url in the Browser
+to test the app locally put the url in the Browser
 ```
 localhost:5002
 ```
