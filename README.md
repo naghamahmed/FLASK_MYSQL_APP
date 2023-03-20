@@ -88,6 +88,9 @@ jenkinsfile stages
 - Apply K8S Mainfest
 - Output the App URL in the console output
 
+![Screenshot from 2023-03-20 18-29-46](https://user-images.githubusercontent.com/110065223/226406587-e0048b4a-51ec-470d-91d8-e1ed8959b71d.png)
+
+
 ![Screenshot from 2023-03-20 15-55-19](https://user-images.githubusercontent.com/110065223/226399249-50cd2193-8940-41c8-86cf-bc15024bf034.png)
 
 # Accessing the app URL
