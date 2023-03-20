@@ -54,6 +54,7 @@ pipeline {
         stage('Deploy k8s mainfest') {
             steps{
                 sh'kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.6.4/deploy/static/provider/aws/deploy.yaml'
+                sh'sleep 30'
                 sh'kubectl apply -f k8s/.'
                 
             }
