@@ -58,16 +58,38 @@ sudo chmod +x bash.sh
   
   ![Screenshot from 2023-03-20 15-28-31](https://user-images.githubusercontent.com/110065223/226387487-06627794-9707-4668-b13b-a8b7b706c2b2.png)
   
-  - Configure the pipeline using SCM
-  
-  
+  - Configure the pipeline using SCM and Build Triggers 
 
-  
+![Screenshot from 2023-03-20 17-58-48](https://user-images.githubusercontent.com/110065223/226398091-657f6b51-1f3a-4135-aa4e-8f9ea5be79f9.png)
+![Screenshot from 2023-03-20 17-58-57](https://user-images.githubusercontent.com/110065223/226398101-a236007f-b04b-409a-9c87-3bc6e631c73d.png)
 
+# Using Github Webhook to trigger jenkins
 
+from repo"s settings adding webhoob with jenkins's
 
+![Screenshot from 2023-03-20 15-33-03](https://user-images.githubusercontent.com/110065223/226398814-68eeac01-60b2-44ad-bb54-0eb2d8994fc6.png)
 
+# Commit to the repo by uploading Jenkinisfile
 
+the pipeline will be triggered and Build
+jenkinsfile stages
+- Build images (flask and mysql)
+- Login to ECR
+- Push images to ECR
+- Get kubeconfig
+- Apply K8S Mainfest
+- Output the App URL in the console output
+
+![Screenshot from 2023-03-20 15-55-19](https://user-images.githubusercontent.com/110065223/226399249-50cd2193-8940-41c8-86cf-bc15024bf034.png)
+
+# Accessing the app URL
+
+![Screenshot from 2023-03-20 15-57-09](https://user-images.githubusercontent.com/110065223/226400367-9d789aa5-fadd-43ee-bb30-bf768865c083.png)
+![Screenshot from 2023-03-20 15-57-09](https://user-images.githubusercontent.com/110065223/226400379-d0387fdb-81d4-4670-9854-52be53b25f62.png)
+
+# Checking the app liveness and readiness
+
+![Screenshot from 2023-03-20 15-54-42](https://user-images.githubusercontent.com/110065223/226400531-08d5baa3-9377-4c4c-9549-5f52e6c6dddd.png)
 
 
 
