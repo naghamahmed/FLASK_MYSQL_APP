@@ -85,7 +85,8 @@ jenkinsfile stages
 # Accessing the app URL
 
 ![Screenshot from 2023-03-20 15-57-09](https://user-images.githubusercontent.com/110065223/226400367-9d789aa5-fadd-43ee-bb30-bf768865c083.png)
-![Screenshot from 2023-03-20 15-57-09](https://user-images.githubusercontent.com/110065223/226400379-d0387fdb-81d4-4670-9854-52be53b25f62.png)
+![Screenshot from 2023-03-20 15-56-41](https://user-images.githubusercontent.com/110065223/226401687-1efda1aa-a6fa-4995-8c54-f58d4f2ffc14.png)
+
 
 # Checking the app liveness and readiness
 
