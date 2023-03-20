@@ -25,3 +25,14 @@ spec:
             #name: mysql-secret
         ports:
         - containerPort: 5002
+        readinessProbe:
+          tcpSocket:
+            port: 5002
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 5002
+          initialDelaySeconds: 15
+          periodSeconds: 20
+
