@@ -68,5 +68,6 @@ pipeline {
                     cat url.txt
                     """
             }
+        }    
     }
 }
