@@ -33,11 +33,10 @@ resource "aws_iam_role_policy_attachment" "amazon_ec2_container_registry_read_on
 
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 
-  role = aws_iam_role.ec2_role.name
+  role       = aws_iam_role.ec2_role.name
 }
 
-
-resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "ec2_profile"
+resource "aws_iam_instance_profile" "ec2_profile_jenkins" {
+  name = "ec2_profile_jenkins"
   role = aws_iam_role.ec2_role.name
 }

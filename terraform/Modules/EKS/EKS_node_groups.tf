@@ -1,5 +1,5 @@
 resource "aws_iam_role" "nodes_general" {
-  name = "eks-node-group-general"
+  name = "eks-node-group"
 
   assume_role_policy = <<POLICY
 {

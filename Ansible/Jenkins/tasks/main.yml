@@ -1,0 +1,151 @@
+---
+# tasks file for Jenkins
+
+- name: Apt update
+  apt:
+    update_cache: yes
+
+- name: Install packages
+  apt:
+    name:
+      - openjdk-11-jdk
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - unzip
+      - python3
+
+#Jenkins Installation
+- name: Add Jenkins repository
+  apt_key:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+    state: present
+
+- name: Add jenkins software
+  apt_repository: "repo='deb https://pkg.jenkins.io/debian-stable binary/' state=present"
+
+- name: Install Jenkins
+  apt:
+    name:
+      - jenkins
+
+- name: Start Jenkins
+  service:
+    name: jenkins
+    state: started
+    enabled: yes
+
+# Docker Installation
+
+- name: Donwload Docker
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg 
+    state: present
+  become: yes
+
+- name: Add specified repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+- name: Install Docker
+  apt:
+    name: docker-ce
+
+- name: Start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Docker compose
+  shell: curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+- name: Modify Docker-compose permission
+  file:
+    path: /usr/local/bin/docker-compose
+    mode: +x
+
+- name: docker.sock permissions
+  file: 
+    path: /var/run/docker.sock
+    mode: '0777'
+
+- name: Add docker group to ubuntu user
+  user:
+    name: ubuntu
+    groups: docker
+    append: yes
+
+- name: Add group docker to Jenkins user
+  user:
+    name: jenkins
+    groups: docker
+    append: yes
+
+- name: JENKINS-PASSTOKEN | Get initial authentication token
+  shell: 'cat /var/lib/jenkins/secrets/initialAdminPassword'
+  register: admin_auth_token
+
+- name: Jenkins intial password
+  debug:
+    msg: "Jenkins intial password = {{admin_auth_token.stdout}}"
+
+# - name: JENKINS-CTEDENTIALS | Create CRUMB authentication request
+#   uri:
+#     url: '{{ jenkins_url }}/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
+#     user: admin
+#     password: '{{ admin_auth_token.stdout }}'
+#     force_basic_auth: yes
+#     return_content: yes
+#   register: crumb
+
+# - name: JENKINS-CTEDENTIALS | Add Jenkins administration account
+#   uri:
+#     method: POST
+#     url: '{{ jenkins_url }}/securityRealm/createAccountByAdmin'
+#     user: admin
+#     password: '{{ admin_auth_token.stdout }}'
+#     force_basic_auth: yes
+#     follow_redirects: all
+#     headers:
+#       Jenkins-Crumb: '{{ crumb.content.split(":")[1] }}'
+#       Cookie: '{{ crumb.set_cookie }}'
+#     # body: 'username=user2&password1=pass&password2=pass&fullname=fullname&email=bubba%40dummy.bg'
+#     body: 'username={{ jenkins_user }}&password1={{ jenkins_pass }}&password2={{ jenkins_pass }}&fullname={{ jenkins_fullname }}&email={{ jenkins_email }}'
+
+# - name: Install plugin
+#   jenkins_plugin:
+#     name: build-pipeline-plugin
+#     url_password: '{{ admin_auth_token.stdout }}'
+#     url: '{{ jenkins_url }}'
+#     url_username: admin
+
+#Install AWS cli
+- name: Install AWS cli url
+  shell: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+- name: Unarchieve AWS-cli.zip
+  unarchive:
+    src: awscliv2.zip
+    dest: /home/ubuntu
+    remote_src: yes
+
+- name: Install AWS cli
+  shell: "./aws/install"
+
+#Install kubectl
+- name: Download the Google Cloud public signing key
+  shell: curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+- name: Add the Kubernetes apt repository
+  shell: echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+- name: Apt update
+  apt:
+    update_cache: yes
+
+- name: Install kubectl
+  apt:
+    name:
+      - kubectl
